@@ -52,9 +52,17 @@ public class MorseDecoder {
         double[] returnBuffer = new double[totalBinCount];
 
         double[] sampleBuffer = new double[BIN_SIZE * inputFile.getNumChannels()];
-        for (int binIndex = 0; binIndex < totalBinCount; binIndex++) {
-            // Get the right number of samples from the inputFile
-            // Sum all the samples together and store them in the returnBuffer
+            for (int binIndex = 0; binIndex < totalBinCount; binIndex++) {
+                System.out.println("binIndex at " + binIndex);
+                double sum = 0;
+                openWavFile
+                int test = inputFile.readFrames(sampleBuffer, BIN_SIZE);
+                for (int i = 0; i < sampleBuffer.length; i++) {
+                // Get the right number of samples from the inputFile
+                // Sum all the samples together and store them in the returnBuffer
+               sum = sampleBuffer[i] + sum;
+           }
+           returnBuffer[binIndex] = sum;
         }
         return returnBuffer;
     }
